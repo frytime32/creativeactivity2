@@ -1,0 +1,40 @@
+<title>Chuck Norris Jokes</title>
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+<body bgcolor ="#E6E6FA">
+<center>
+<img id="chuck_pic" src="https://i.ytimg.com/vi/5_RUut1px3Q/maxresdefault.jpg"style="width:790px;height:593px;" align = "middle"/>
+</center>
+
+<center>
+<button id="button" type="button" style="padding: 5px 10px; margin: 10px 20px;">New Fact</button>
+</center>
+
+<center>
+<div id="jokediv" style="font-size:160%;font-family: verdana;">Click for a fact!</div>
+</center>
+
+<script>
+$("#button").click(function(e){
+	e.preventDefault();
+	var newjoke;
+	newjoke="<p>";
+	var myurl = "https://api.chucknorris.io/jokes/random";
+	$.ajax({
+		url:myurl,
+		crossDomain:true,
+		dataType:"json",	
+		success: function(parsed_json){
+			//parsed_json = JSON.parse(parsed_json);
+			newjoke+=parsed_json['value'];
+			newjoke+="</p>";
+			$("#jokediv").html(newjoke);
+			}
+		}
+	);
+});
+</script>
+
+</body>
+
